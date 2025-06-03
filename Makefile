@@ -39,7 +39,9 @@ REG = registry.okd4.teh-1.snappcloud.io
 # Image URL to use all building/pushing image targets
 IMG ?= ${REG}/public-reg/node-config-operator:latest
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
-CRD_OPTIONS ?= crd:trivialVersions=true,preserveUnknownFields=false
+# controller-gen v0.18 removed the trivialVersions and preserveUnknownFields
+# options. Use the plain 'crd' generator with default settings.
+CRD_OPTIONS ?= crd
 
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell go env GOBIN))
