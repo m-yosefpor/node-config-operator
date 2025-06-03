@@ -92,7 +92,9 @@ tidy:
 	go mod tidy
 
 test: manifests generate fmt vet envtest ## Run tests.
-	go test ./... -covermode=atomic -coverprofile=coverage.out
+	@echo "Setting up envtest environment..."
+	@eval "$($(ENVTEST) use 1.30.0 -p env)" && \
+	go test ./... -covermode=atomic -coverprofile=coverage.out && \
 	go tool cover -html=coverage.out -o coverage.html
 
 ##@ Build
