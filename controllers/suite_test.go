@@ -17,6 +17,7 @@ limitations under the License.
 package controllers
 
 import (
+	"os"
 	"path/filepath"
 	"testing"
 
@@ -39,6 +40,7 @@ import (
 
 var k8sClient client.Client
 var testEnv *envtest.Environment
+var useEnvtest bool
 
 func TestAPIs(t *testing.T) {
 	RegisterFailHandler(Fail)
@@ -47,6 +49,12 @@ func TestAPIs(t *testing.T) {
 
 var _ = BeforeSuite(func() {
 	logf.SetLogger(zap.New(zap.WriteTo(GinkgoWriter), zap.UseDevMode(true)))
+
+	if os.Getenv("RUN_ENVTEST") != "true" {
+		return
+	}
+
+	useEnvtest = true
 
 	By("bootstrapping test environment")
 	testEnv = &envtest.Environment{
@@ -73,6 +81,10 @@ var _ = BeforeSuite(func() {
 }, 60)
 
 var _ = AfterSuite(func() {
+	if !useEnvtest {
+		return
+	}
+
 	By("tearing down the test environment")
 	err := testEnv.Stop()
 	Expect(err).NotTo(HaveOccurred())
