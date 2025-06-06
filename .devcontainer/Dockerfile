@@ -1,8 +1,9 @@
 # Best-practice Go development Dockerfile for devcontainer
-FROM golang:1.23-alpine
+FROM golang:1.23
 
 # Install common Go tools and dependencies
-RUN apk add --no-cache git bash build-base curl
+RUN apt-get update && apt-get install -y git bash build-essential curl \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
 

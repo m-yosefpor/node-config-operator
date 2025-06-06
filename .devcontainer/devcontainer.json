@@ -8,9 +8,7 @@
 		"dockerfile": "Dockerfile"
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/go:1": {
-			"version": "1.23"
-		}
+		// Removed Go feature to avoid conflict with base image
 	},
 	"forwardPorts": [8080],
 	"postCreateCommand": "go mod tidy",
