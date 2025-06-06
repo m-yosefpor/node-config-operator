@@ -1,13 +1,13 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
+	// Best-practice Go Dev Container configuration
 	"name": "Go Dev Container",
 	"build": {
 		"context": "..",
 		"dockerfile": "Dockerfile"
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
 		"ghcr.io/devcontainers/features/go:1": {
 			"version": "1.23"
 		}
@@ -17,15 +17,16 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"golang.go"
+				"golang.go",
+				"ms-azuretools.vscode-docker"
 			],
 			"settings": {
-				"go.gopath": "/go",
-				"go.useLanguageServer": true
+				"go.toolsManagement.autoUpdate": true,
+				"go.useLanguageServer": true,
+				"go.formatTool": "goimports",
+				"go.lintTool": "golangci-lint",
+				"go.testFlags": ["-v"]
 			}
 		}
-	},
-	"mounts": [
-		"source=${localWorkspaceFolder}/go/pkg/mod,target=/go/pkg/mod,type=volume"
-	]
+	}
 }
