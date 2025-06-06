@@ -1,5 +1,5 @@
 # Best-practice Go development Dockerfile for devcontainer
-FROM golang:1.23
+FROM golang:1.24
 
 # Install common Go tools and dependencies
 RUN apt-get update && apt-get install -y git bash build-essential curl \
