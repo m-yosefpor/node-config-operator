@@ -2,7 +2,6 @@
 
 An operator to manage node labels, annotations and taints based on `NodeConfig` Custom Resource.
 
-
 Comparison to alternatives:
 
 1. https://github.com/barpilot/node-labeler-operator: this one does support node taints and labels, but can only select nodes based on labels, not node name pattern (regex). Also it is not an actively maintained project and has no activity since 2018.
@@ -46,7 +45,6 @@ export IMG=ghcr.io/your-repo-path/image-name:latest
 
 ## Configuration
 
-
 Flags:
 
 ```
@@ -69,7 +67,6 @@ Flags:
 ```
 
 For sample NodeConfig objects, see [config/samples](config/samples) directory.
-
 
 ## Roadmap
 
@@ -94,7 +91,6 @@ For sample NodeConfig objects, see [config/samples](config/samples) directory.
 | workqueue_retries_total | Total number of retries handled by workqueue
 | workqueue_unfinished_work_seconds | How many seconds of work has been done that is in progress and hasn't been observed by work_duration. Large values indicate stuck threads. One can deduce the number of stuck threads by observing the rate at which this increases.
 | workqueue_work_duration_seconds | How long in seconds processing an item from workqueue takes.
-
 
 ## Security
 
